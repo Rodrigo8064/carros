@@ -11,7 +11,7 @@ class CarslistView(ListView):
     context_object_name = 'cars'
 
     def get_queryset(self):
-        cars = Car.objects.all().order_by('model')
+        cars = super().get_queryset().order_by('model')
         search = self.request.GET.get('search')
         if search:
             cars = cars.filter(model__icontains=search)
